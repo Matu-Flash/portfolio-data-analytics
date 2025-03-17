@@ -14,6 +14,7 @@ Automatización de Reportes: Scripts en Python para la generación y envío de r
 Procesamiento de Datos: Uso de Pandas y PySpark para transformar y limpiar grandes volúmenes de datos.
 
 ## 📂 Proyectos
+https://github.com/Matu-Flash/portfolio-data-analytics/blob/main/Python
 
 ## 📬 Contacto
 - LinkedIn
