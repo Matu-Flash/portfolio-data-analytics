@@ -16,5 +16,6 @@ Procesamiento de Datos: Uso de Pandas y PySpark para transformar y limpiar grand
 ## 📂 Proyectos
 
 ## 📬 Contacto
-- [LinkedIn](www.linkedin.com/in/matias-arguello-62a0a6175)
+- LinkedIn
+  www.linkedin.com/in/matias-arguello-62a0a6175
 
