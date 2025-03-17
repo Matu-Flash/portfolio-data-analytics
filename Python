@@ -1,0 +1,24 @@
+# Creacion de mapa de Calor con coordenadas:
+
+import pandas as pd
+import folium
+from folium.plugins import HeatMap
+
+# 📌 1. Cargar el archivo Excel con los datos de prospectos
+file_path = "/content/prospectos_mendoza_zonas.xlsx"  # 🔹 Reemplázalo con tu archivo
+df = pd.read_excel(file_path)
+
+# 📌 2. Crear el mapa centrado en Mendoza
+mapa_calor = folium.Map(location=[-32.85, -68.85], zoom_start=12)
+
+# 📌 3. Preparar los datos para el HeatMap
+heat_data = list(zip(df["Latitude"], df["Longitude"]))
+
+# 📌 4. Agregar el HeatMap al mapa
+HeatMap(heat_data, radius=10).add_to(mapa_calor)
+
+# 📌 5. Guardar el mapa en un archivo HTML para abrirlo en el navegador
+map_file_path = "mapa_calor_prospectos_mdz.html"
+mapa_calor.save(map_file_path)
+
+print(f"✅ Mapa de Calor generado: {map_file_path}")
