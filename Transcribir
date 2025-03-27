@@ -1,0 +1,41 @@
+# 📌 Paso 1: Instalación de librerías necesarias
+!apt-get install -y tesseract-ocr tesseract-ocr-spa
+!pip install pytesseract Pillow
+# 📌 Paso 2: Importar librerías
+from PIL import Image
+import pytesseract
+import os
+import re
+
+# 📌 Paso 3: Buscar automáticamente imágenes en /content
+image_files = [f for f in os.listdir("/content") if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
+
+if not image_files:
+    print("⚠️ No se encontraron imágenes en la carpeta /content.")
+else:
+    for file_name in image_files:
+        print(f"\n📷 Procesando imagen: {file_name}")
+        
+        # Abrimos la imagen
+        image_path = os.path.join("/content", file_name)
+        image = Image.open(image_path)
+
+        # Usamos OCR para extraer el texto
+        raw_text = pytesseract.image_to_string(image, lang='spa')
+
+        # Limpiar texto (opcional)
+        clean_text = "\n".join([line.strip() for line in raw_text.splitlines() if line.strip() != ""])
+
+        # Mostrar el texto extraído
+        print("\n📝 Texto extraído:\n")
+        print(clean_text)
+
+        # Guardar en archivo .txt
+        output_filename = f"{os.path.splitext(file_name)[0]}_extraido.txt"
+        with open(output_filename, "w", encoding="utf-8") as f:
+            f.write(clean_text)
+
+        # Descargar el archivo
+        from google.colab import files
+        files.download(output_filename)
+        print(f"\n✅ Archivo '{output_filename}' listo para descargar.")
